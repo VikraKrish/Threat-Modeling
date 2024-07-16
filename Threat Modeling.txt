@@ -1,0 +1,249 @@
+Threat Modeling
+
+   STRIDE Model
+
+   Threat Modeling Phases :
+
+     - Design
+     - Break
+     - Fix
+     - Verify
+
+    Design
+    
+    - System Description
+    - System environment
+    - Scenarios
+    - 
+
+
+    Break
+
+
+
+
+    Fix
+
+
+
+
+
+    Verify
+
+
+     Eg: Network Security Plans
+         Secrets Management Solution Implementatio
+         Logging and Monitoring
+         Identity and Access Controls
+         Change default configuration settings (Cloud provider, OS)
+
+
+         Run Verfication
+          - Automated and Manual
+
+          Eg: Code reviews
+              PT
+              Automated Scanners
+
+
+        
+        Elements:
+
+        Data Store
+        Data Flow
+        Trust Boundary
+        External Entity
+
+
+        Depth Layers:
+
+        System Layer
+        Process
+        Sub Process
+
+
+        Approaches:
+        System-focused
+        Attacker-focused
+        Asset-focused
+
+         
+        Using Frameworks to Identify Threats: STRIDE
+
+        Are both sides of the communication authenticated?
+        How do I know someone can't change data in transit, in use, or at rest?
+        Can every action be tied to an identity?
+        How do I know someone can't see data in transit, in use, or at rest?
+        Are there areas in the system where resource is limited?
+        How do I know someone is allowed to take this action?
+
+
+
+        Category	Description
+        Spoofing	Pretending to be someone or something else
+        Tampering	Changing data without authorization
+        Repudiation	Not claiming responsibility for an action taken
+        Information disclosure	Seeing data without permission
+        Denial of service	Overwhelming the system
+        Elevation of privilege	Having permissions I shouldn't have
+
+
+        Category	Security Control	Description
+        Spoofing	Authentication	They are who they say they are
+        Tampering	Integrity	Prevents data from being maliciously modified
+        Repudiation	Non-repudiation	Actions are tied to users
+        Information disclosure	Confidentiality	Data is protected against unintended disclosure
+        Denial of service	Availability	System handles all requests appropriately
+        Elevation of privilege	Authorization	User has appropriate permissions to carry out a request
+
+
+
+        #Spoofing - Prentending to be someone or something else
+
+        Tip  : Have I authenticated both sides of the communication?
+
+        Authentication verifies that users and systems are who they claim to be.
+
+        Examples include:
+
+        Sending and receiving messages signed with digital signatures to authenticate origin and ensure message integrity.
+        Securing data transmissions with SSL/TLS to encrypt traffic between source and target.
+        The use of unique credentials with expiring tokens, passwords, or multi-factor authentication to help secure user, admin, and service accounts.
+        Common security controls to reduce or eliminate risk
+        
+        For your data:
+
+        Hashes
+        Message Authentication Codes
+        Digital Signatures
+        
+        For your system:
+
+        User Authentication
+        Cookie Authentication
+        Kerberos
+        SSL/TLS
+        Certificates
+        IPSec
+        Digitally Signed Packets
+
+
+        #Tampering - Changing data w/o authorization
+
+        Tip:  How do I know someone can't change my data in transit or at rest?
+
+        Tampering occurs when a malicious attacker reads, modifies, deletes, or inserts data in your system without authorization.
+        
+        How to prevent tampering
+        Integrity prevents data from being maliciously modified. Examples include:
+
+        Validating input to prevent the processing of malicious payloads and mishandling of unexpected behavior
+        Signing messages with digital signatures to ensure messages aren't tampered with
+        Using access-control lists to apply permissions
+        Using SSL/TLS to secure transmission
+        Creating an IPSec tunnel to secure communication between endpoints
+
+        Common security controls to reduce or eliminate risk
+
+        Operating system integrity controls
+        Access control lists (ACL)
+        Digital signatures
+        Message authentication codes
+
+
+        #Repudiation  - Can I tie every action to an identity
+
+        Repudiation occurs when someone, with or without malicious intent, takes an action but claims otherwise.
+
+
+        How to prevent repudiation
+        Non-repudiation ensures each action can be traced back to its origin by creating and protecting security logs.
+
+        Common security controls to reduce or eliminate risk
+        Strong authentication
+        Secure logging and monitoring
+        Digital signatures
+        Secure timestamps
+        Trusted third parties
+
+
+        #Information Disclosure
+
+        Tip : Can I be sure no one can see my data in transit and at rest?
+
+        Confidentiality ensures data is protected.
+
+
+        Examples include:
+
+        Applying access-control lists to ensure the right users can access the right data.
+        Encrypting data at rest, in transit, and in use.
+        Enforcing SSL/TLS to secure transmission.
+        Using IPSec tunnels to secure communication across endpoints.
+        Common security controls to reduce or eliminate risk
+        Encryption
+        Access Control Lists (ACL)    
+
+        #Denial of Service
+
+        Tip : Are there areas where my service is resource-limited?
+
+        Availability ensures your system is up and running for users. Examples include:
+
+        Using network access-control lists to control incoming and outgoing traffic.
+        Using elastic resources to manage growing or shrinking usage.
+        Monitoring the system to detect anomalies.
+        Enabling operating-system flags to handle memory and CPU processes.
+
+        Common security controls to reduce or eliminate risk
+
+        Access control lists (ACL)
+        Filtering
+        Quotas
+        Authorization
+        High availability
+
+
+        #Elevation of Privilege
+
+        Tip : How do I know the user is allowed to do this?
+
+        Authorization ensures users have proper permissions. 
+        
+        Examples include:
+
+        Implementing authorization mechanisms to verify permissions to data and resources.
+        Applying security controls to run the service using the least possible amount of access.
+        Monitoring access to detect anomalies and unauthorized access attempts.
+
+        Common security controls to reduce or eliminate risk
+
+        Access-control lists (ACL)
+        Role-based access controls (RBAC)
+        Group-based access
+        Permissions
+        Input validation
+
+
+
+        ##Issue Prioritization, security control types, functions
+
+        Security Control Types:
+
+        Physical
+        Administrative
+        Technical
+
+
+        Security Control Functions to apply multiple layers of security
+
+        Function	         Description	                                                                    Example
+        Preventative	Does this strategy help reduce the probability or impact of this threat?	Locks, firewalls, data classification
+        Detective	Does this strategy help identify attacks against my system as they happen?	Surveillance, honeypots, audit logs
+        Corrective	Does this strategy help control how I respond to an incoming attack? Physical repair, system patches, incident response plans
+        Recovery	Does this mitigation help my service recover from an attack?	Hot-sites, system backups, disaster recovery plan
+        Deterrent	Does this mitigation help keep attackers away from my system?	Fences, least privilege, authorized use policy
+
+
+
+
